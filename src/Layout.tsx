@@ -10,7 +10,9 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="nav-header">
         <NavHeader />
       </header>
-      <main className="page-content">{children}</main>
+      <main className="page-content">
+          {children}
+      </main>
     </div>
   );
 };

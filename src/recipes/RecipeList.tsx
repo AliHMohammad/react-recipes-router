@@ -41,7 +41,7 @@ export default function RecipeList() {
           <button
             onClick={() => {
               setCategory(null);
-              getRecipes(null).then((res) => setRecipes(res));
+              //getRecipes(null).then((res) => setRecipes(res));
             }}
           >
             Clear
