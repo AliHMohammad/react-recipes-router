@@ -4,11 +4,12 @@ import Recipe from "./recipes/Recipe";
 import Recipes from "./recipes/RecipeList";
 import RecipeForm from "./recipes/RecipeForm";
 import Login from "./security/Login";
-//import Logout from "./security/_Logout";
 import Layout from "./Layout";
 import Home from "./Home";
 import "./App.css";
 import RecipesLayout from "./recipes/RecipesLayout.tsx";
+import Logout from "./security/Logout.tsx";
+import RequireAuth from "./security/RequireAuth.tsx";
 
 export default function App() {
     //const auth = useAuth();
@@ -22,8 +23,8 @@ export default function App() {
                 </Route>
                 <Route path="/add" element={<RecipeForm/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="*" element={<h2>Not Found</h2>} />
-                {/* <Route path="/logout" element={<Logout />} /> */}
+                <Route path="*" element={<h2>Not Found</h2>}/>
+                {<Route path="/logout" element={<Logout/>}/>}
             </Routes>
         </Layout>
     );
