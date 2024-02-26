@@ -55,10 +55,14 @@ export default function AuthProvider({children}: { children: ReactNode }) {
     const value = {username, isLoggedIn, isLoggedInAs, signIn, signOut};
 
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
 
-
+//Hjælpe funktion
 export function useAuth() {
     return useContext(AuthContext);
 }
