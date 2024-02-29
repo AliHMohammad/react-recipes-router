@@ -21,7 +21,13 @@ export default function App() {
                 <Route path="/recipes" element={<RecipesLayout/>}>
                     <Route path=":id" element={<Recipe/>}/>
                 </Route>
-                <Route path="/add" element={<RecipeForm/>}/>
+                <Route path="/add" element={
+                    //Wrapper i RequireAuth for at beskytte routen, således at du skal være logget ind for at tilgå den.
+                    //Hvis du ikke er, smides du til home.
+                    <RequireAuth>
+                        <RecipeForm/>
+                    </RequireAuth>
+                }/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="*" element={<h2>Not Found</h2>}/>
                 {<Route path="/logout" element={<Logout/>}/>}

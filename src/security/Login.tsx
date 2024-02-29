@@ -27,6 +27,10 @@ const Login = () => {
         return auth
             .signIn(user)
             .then(() => {
+                if (auth.isLoggedInAs(["ADMIN"])){
+                    navigate("/add", {replace: true});
+                    return;
+                }
                 navigate(from, {replace: true});
             })
             .catch((err) => {
