@@ -28,6 +28,12 @@ export default function App() {
                         <RecipeForm/>
                     </RequireAuth>
                 }/>
+                <Route path="/add/category" element={
+
+                    <RequireAuth roles={["ADMIN"]}>
+                        <RecipeForm/>
+                    </RequireAuth>
+                }/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="*" element={<h2>Not Found</h2>}/>
                 {<Route path="/logout" element={<Logout/>}/>}
