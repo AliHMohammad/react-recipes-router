@@ -10,6 +10,7 @@ export function makeOptions(method: string, body: object | null): RequestInit {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("token") || ""
     },
   };
   if (body) {

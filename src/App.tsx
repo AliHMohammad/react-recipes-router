@@ -10,6 +10,7 @@ import "./App.css";
 import RecipesLayout from "./recipes/RecipesLayout.tsx";
 import Logout from "./security/Logout.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
+import CategoryForm from "./categories/CategoryForm.tsx";
 
 export default function App() {
     //const auth = useAuth();
@@ -21,7 +22,7 @@ export default function App() {
                 <Route path="/recipes" element={<RecipesLayout/>}>
                     <Route path=":id" element={<Recipe/>}/>
                 </Route>
-                <Route path="/add" element={
+                <Route path="/add/recipe" element={
                     //Wrapper i RequireAuth for at beskytte routen, således at du skal være logget ind for at tilgå den.
                     //Hvis du ikke er, smides du til home.
                     <RequireAuth roles={["ADMIN", "USER"]}>
@@ -31,7 +32,7 @@ export default function App() {
                 <Route path="/add/category" element={
 
                     <RequireAuth roles={["ADMIN"]}>
-                        <RecipeForm/>
+                        <CategoryForm/>
                     </RequireAuth>
                 }/>
                 <Route path="/login" element={<Login/>}/>

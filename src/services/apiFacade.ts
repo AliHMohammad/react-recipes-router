@@ -5,6 +5,7 @@ const RECIPE_URL = API_URL + "/recipes";
 const INFO_URL = API_URL + "/info";
 
 
+
 interface Recipe {
   id: number | null;
   name: string;
@@ -47,6 +48,12 @@ async function addRecipe(newRecipe: Recipe): Promise<Recipe> {
   const URL = newRecipe.id ? `${RECIPE_URL}/${newRecipe.id}` : RECIPE_URL;
   return fetch(URL, options).then(handleHttpErrors);
 }
+
+async function addCategory(newCategory: {name: string}): Promise<string> {
+  const options = makeOptions("POST", newCategory);
+  return fetch(CATEGORIES_URL, options).then(handleHttpErrors);
+}
+
 async function deleteRecipe(id: number): Promise<Recipe> {
   const options = makeOptions("DELETE", null);
   return fetch(`${RECIPE_URL}/${id}`, options).then(handleHttpErrors);
@@ -58,4 +65,4 @@ async function getInfo(): Promise<Info> {
 
 export type { Recipe, Info };
 // eslint-disable-next-line react-refresh/only-export-components
-export { getCategories, getRecipes, getRecipe, addRecipe, deleteRecipe, getInfo };
+export { getCategories, getRecipes, getRecipe, addRecipe, deleteRecipe, getInfo, addCategory };
