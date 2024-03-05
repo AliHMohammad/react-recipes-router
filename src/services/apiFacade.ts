@@ -25,6 +25,7 @@ interface Info {
 
 let categories: Array<string> = [];
 let recipes: Array<Recipe> = [];
+let info: Info | null = null
 
 async function getCategories(): Promise<Array<string>> {
   //if (categories.length > 0) return [...categories];
@@ -60,7 +61,10 @@ async function deleteRecipe(id: number): Promise<Recipe> {
 }
 
 async function getInfo(): Promise<Info> {
-  return fetch(INFO_URL).then(handleHttpErrors);
+  //Vi har cashing på info.
+  if (info) return info;
+  info = await fetch(INFO_URL).then(handleHttpErrors) as Info;
+  return info;
 }
 
 export type { Recipe, Info };
