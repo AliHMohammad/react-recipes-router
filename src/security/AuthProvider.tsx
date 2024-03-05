@@ -42,6 +42,20 @@ export default function AuthProvider({children}: { children: ReactNode }) {
 
 
     function isLoggedIn() {
+        const token = localStorage.getItem("token") || null;
+
+        if (!token) return false;
+
+        const encodedClaims = token.split(".")[1];
+        const claims: {exp: number} = JSON.parse(atob(encodedClaims));
+
+        //Vi ganger med 1000, da claims.exp er i sekunder og Date.now() i milisekunder
+        const tokenExp = new Date(claims.exp * 1000);
+        console.log(new Date())
+        console.log(tokenExp)
+
+        if (new Date() > tokenExp) return false;
+
         return username != null;
     }
 
