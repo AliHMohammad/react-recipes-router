@@ -24,7 +24,7 @@ export default function App() {
                 </Route>
                 <Route path="/add/recipe" element={
                     //Wrapper i RequireAuth for at beskytte routen, således at du skal være logget ind for at tilgå den.
-                    //Hvis du ikke er, smides du til home.
+                    //Hvis du ikke er, smides du til login-siden.
                     <RequireAuth roles={["ADMIN", "USER"]}>
                         <RecipeForm/>
                     </RequireAuth>
