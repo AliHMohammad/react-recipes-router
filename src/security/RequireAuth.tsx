@@ -18,8 +18,13 @@ export default function RequireAuth({ children, roles }: Props) {
             return <Navigate to="/login" state={{ from: location }} replace />;
         }
     }
-    if (!auth.username) {
+    /*if (!auth.username) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }*/
+
+    if (!auth.isLoggedIn()) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
+
     return children;
 }
