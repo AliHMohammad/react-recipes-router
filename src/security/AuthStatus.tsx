@@ -8,10 +8,10 @@ export default function AuthStatus() {
         return (
             <>
                 <li>
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink to="/signup">Sign up</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/signup">Sign up</NavLink>
+                    <NavLink to="/login">Login</NavLink>
                 </li>
             </>
 

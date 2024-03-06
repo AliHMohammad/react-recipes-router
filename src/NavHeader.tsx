@@ -7,30 +7,34 @@ export default function NavHeader() {
 
     return (
         <nav>
-            <ul>
-                <li>
-                    {<NavLink to="/">Home</NavLink>}
-                </li>
-                <li>
-                    {<NavLink to="/categories">Categories</NavLink>}
-                </li>
-                <li>
-                    {<NavLink to="/recipes">Recipes</NavLink>}
-                </li>
-                {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            <ul style={{display: "grid", gridTemplateColumns: "1fr 1fr"}}>
+                <div>
                     <li>
-                        {<NavLink to="/add/recipe">Add Recipe</NavLink>}
+                        {<NavLink to="/">Home</NavLink>}
                     </li>
-                )}
-                {auth.isLoggedInAs(["ADMIN"]) && (
                     <li>
-                        {<NavLink to="/add/category">Add Category</NavLink>}
+                        {<NavLink to="/categories">Categories</NavLink>}
                     </li>
-                )}
-                <li>
-                    {<NavLink to="/contact">Contact</NavLink>}
-                </li>
-                <AuthStatus/>
+                    <li>
+                        {<NavLink to="/recipes">Recipes</NavLink>}
+                    </li>
+                    {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+                        <li>
+                            {<NavLink to="/add/recipe">Add Recipe</NavLink>}
+                        </li>
+                    )}
+                    {auth.isLoggedInAs(["ADMIN"]) && (
+                        <li>
+                            {<NavLink to="/add/category">Add Category</NavLink>}
+                        </li>
+                    )}
+                    <li>
+                        {<NavLink to="/contact">Contact</NavLink>}
+                    </li>
+                </div>
+                <div style={{display: "flex", justifyContent: "flex-end"}}>
+                    <AuthStatus/>
+                </div>
             </ul>
         </nav>
     );
