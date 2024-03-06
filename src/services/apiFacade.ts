@@ -3,6 +3,7 @@ import  { makeOptions,handleHttpErrors } from "./fetchUtils";
 const CATEGORIES_URL = API_URL + "/categories";
 const RECIPE_URL = API_URL + "/recipes";
 const INFO_URL = API_URL + "/info";
+const USER_URL = API_URL + "/api/user-with-role";
 
 
 
@@ -55,6 +56,11 @@ async function addCategory(newCategory: {name: string}): Promise<string> {
   return fetch(CATEGORIES_URL, options).then(handleHttpErrors);
 }
 
+async function addUser(newUser: {username: string, password: string, email: string}){
+    const options = makeOptions("POST", newUser);
+    return fetch(USER_URL, options).then(handleHttpErrors);
+}
+
 async function deleteRecipe(id: number): Promise<Recipe> {
   const options = makeOptions("DELETE", null, true);
   return fetch(`${RECIPE_URL}/${id}`, options).then(handleHttpErrors);
@@ -69,4 +75,4 @@ async function getInfo(): Promise<Info> {
 
 export type { Recipe, Info };
 // eslint-disable-next-line react-refresh/only-export-components
-export { getCategories, getRecipes, getRecipe, addRecipe, deleteRecipe, getInfo, addCategory };
+export { getCategories, getRecipes, getRecipe, addRecipe, deleteRecipe, getInfo, addCategory, addUser };

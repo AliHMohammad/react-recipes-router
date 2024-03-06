@@ -11,6 +11,7 @@ import RecipesLayout from "./recipes/RecipesLayout.tsx";
 import Logout from "./security/Logout.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
 import CategoryForm from "./categories/CategoryForm.tsx";
+import Signup from "./security/Signup.tsx";
 
 export default function App() {
     //const auth = useAuth();
@@ -36,6 +37,7 @@ export default function App() {
                     </RequireAuth>
                 }/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/signup" element={<Signup/>}/>
                 <Route path="*" element={<h2>Not Found</h2>}/>
                 {<Route path="/logout" element={<Logout/>}/>}
             </Routes>

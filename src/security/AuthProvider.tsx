@@ -51,8 +51,6 @@ export default function AuthProvider({children}: { children: ReactNode }) {
 
         //Vi ganger med 1000, da claims.exp er i sekunder og Date.now() i milisekunder
         const tokenExp = new Date(claims.exp * 1000);
-        console.log(new Date())
-        console.log(tokenExp)
 
         if (new Date() > tokenExp) return false;
 
