@@ -39,33 +39,35 @@ const Login = () => {
     }
 
     return (
-        <div className="login-wrapper">
-            <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <div className="login-form-group">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={user.username}
-                        onChange={(e) => setUser((prev) => ({...prev, username: e.target.value}))}
-                        required
-                    />
-                </div>
-                <div className="login-form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={user.password}
-                        onChange={(e) => setUser((prev) => ({...prev, password: e.target.value}))}
-                        required
-                    />
-                </div>
-                <button type="submit" className="login-btn">
-                    Login
-                </button>
-            </form>
+        <div style={{display:"flex", justifyContent: "center"}}>
+            <div className="login-wrapper">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h2>Login</h2>
+                    <div className="login-form-group">
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            value={user.username}
+                            onChange={(e) => setUser((prev) => ({...prev, username: e.target.value}))}
+                            required
+                        />
+                    </div>
+                    <div className="login-form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={user.password}
+                            onChange={(e) => setUser((prev) => ({...prev, password: e.target.value}))}
+                            required
+                        />
+                    </div>
+                    <button style={{marginTop: "1rem"}} type="submit" className="login-btn">
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
