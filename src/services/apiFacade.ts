@@ -5,7 +5,7 @@ const RECIPE_URL = API_URL + "/recipes";
 const INFO_URL = API_URL + "/info";
 const USER_URL = API_URL + "/api/user-with-role";
 
-
+const CACHE_TIME = 1000 * 60 * 1 // 1 minute, burde ligge i settings.ts
 
 interface Recipe {
   id: number | null;
@@ -24,15 +24,23 @@ interface Info {
   info: string;
 }
 
-let categories: Array<string> = [];
+const categories = {
+  categoriesList: [] as Array<string>,
+  lastUpdated: 0
+}
+
+//let categories: Array<string> = [];
 let recipes: Array<Recipe> = [];
 let info: Info | null = null
 
 async function getCategories(): Promise<Array<string>> {
-  //if (categories.length > 0) return [...categories];
+  if (categories.lastUpdated + CACHE_TIME > Date.now()) {
+    return [...categories.categoriesList];
+  }
   const res = await fetch(CATEGORIES_URL).then(handleHttpErrors);
-  categories = [...res];
-  return categories;
+  categories.categoriesList = [...res];
+  categories.lastUpdated = Date.now();
+  return categories.categoriesList;
 }
 async function getRecipes(category: string | null): Promise<Array<Recipe>> {
   //if (recipes.length > 0) return [...recipes];
@@ -51,9 +59,15 @@ async function addRecipe(newRecipe: Recipe): Promise<Recipe> {
   return fetch(URL, options).then(handleHttpErrors);
 }
 
-async function addCategory(newCategory: {name: string}): Promise<string> {
+async function addCategory(newCategory: {name: string}): Promise<string[]> {
   const options = makeOptions("POST", newCategory, true);
-  return fetch(CATEGORIES_URL, options).then(handleHttpErrors);
+  const createdCategory = await fetch(CATEGORIES_URL, options).then(handleHttpErrors);
+
+  categories.categoriesList.push(createdCategory.name);
+  categories.lastUpdated = Date.now();
+
+  return categories.categoriesList;
+  //return fetch(CATEGORIES_URL, options).then(handleHttpErrors);
 }
 
 async function addUser(newUser: {username: string, password: string, email: string}){
